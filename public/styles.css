@@ -1,0 +1,239 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+main {
+  flex: 1;
+  width: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  background-image: url("https://c0.wallpaperflare.com/preview/970/895/709/income-tax-calculator-accounting-financial.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  line-height: 1.6;
+  width: 100%;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0.726);
+  color: rgb(0, 0, 0);
+  padding: 20px 0;
+  text-align: center;
+  padding: 30px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 15px;
+  border: 0px solid aquamarine;
+  border-width: 2px;
+  border-radius: 5px;
+  margin: auto;
+  background-color: aquamarine;
+  padding: 5px;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  color: #000000;
+}
+
+.section_home {
+  margin: 100px auto;
+  max-width: 600px;
+  padding: 20px 0 20px 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.section_register,
+.section_login,
+.section_expenses,
+.section_add_expense,
+.section_edit {
+  margin: 100px auto;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.897);
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.section_expenses {
+  width: 98%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+td {
+  text-align: center;
+}
+
+button,
+.btn,
+.btn_register {
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+.btn_register,
+.btn_login,
+.btn_entry {
+  margin-top: 20px;
+}
+.section_expenses .btn {
+  width: auto;
+  height: auto;
+  font-size: 11px;
+}
+form input,
+form label {
+  display: block;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: aquamarine;
+  margin-top: 20px;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  section {
+    width: 100%;
+  }
+
+  table,
+  th,
+  td {
+    font-size: 14px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav a {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .section_register,
+  .section_login,
+  .section_expenses,
+  .section_add_expense,
+  .section_edit,
+  .section_home {
+    width: 100%;
+    padding: 15px 0 15px 0;
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 24px;
+  }
+
+  form input,
+  button,
+  .btn {
+    font-size: 10px;
+  }
+
+  table,
+  th,
+  td {
+    font-size: 12px;
+  }
+  .section_expenses .btn {
+    width: 50px;
+    height: auto;
+    font-size: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    padding: 5px;
+  }
+  footer {
+    font-size: 0.7em;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+  }
+}

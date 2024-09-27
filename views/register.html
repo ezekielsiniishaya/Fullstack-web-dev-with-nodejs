@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Expense Tracker</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/x-icon" href="/icon (3).ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <h1>Register</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    </nav>
+  </header>
+  <main>
+    <section class="section_register">
+      <form id="registerForm" class="form" method="POST" action="/register">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit" class="btn">Register</button>
+      </form>
+
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Expense Tracker Application</p>
+  </footer>
+  <script src="/script.js"></script>
+</body>
+
+</html>

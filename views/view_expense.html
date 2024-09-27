@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expenses - Expense Tracker</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/x-icon" href="/icon (3).ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <h1>EXPENSES</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    </nav>
+  </header>
+  <main>
+    <section class="section_expenses">
+      <table>
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Date</th>
+            <th>Amount (Naira)</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expense-list">
+          <!-- Dynamic rows will be injected by JavaScript -->
+        </tbody>
+      </table>
+      <a href="/add_expense.html"><button class="btn_entry">Add Expense</button></a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Expense Tracker Application</p>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</body>
+
+</html>
