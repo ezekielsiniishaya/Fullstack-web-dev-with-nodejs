@@ -179,15 +179,18 @@ a:hover {
   table,
   th,
   td {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   nav a {
-    font-size: 14px;
+    font-size: 13px;
   }
-}
-
-@media (max-width: 480px) {
+  table button {
+    width: 60px; 
+    font-size: 12px; 
+    padding: 4px 8px;
+  }
+}@media (max-width: 480px) {
   nav a {
     display: block;
     margin: 10px 0;
