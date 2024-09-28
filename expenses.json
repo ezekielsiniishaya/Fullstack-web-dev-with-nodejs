@@ -24,7 +24,28 @@
     "id": 4,
     "userId": 2,
     "date": "2024-09-28",
-    "amount": "23",
+    "amount": "236",
     "description": "food"
+  },
+  {
+    "id": 5,
+    "userId": 2,
+    "date": "2024-09-18",
+    "amount": "23",
+    "description": "yam6"
+  },
+  {
+    "id": 6,
+    "userId": 2,
+    "date": "2024-09-19",
+    "amount": "45",
+    "description": "saa"
+  },
+  {
+    "id": 7,
+    "userId": 2,
+    "date": "2024-09-19",
+    "amount": "34",
+    "description": "rff"
   }
 ]

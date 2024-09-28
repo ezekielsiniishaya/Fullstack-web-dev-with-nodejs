@@ -27,6 +27,7 @@
 
   <main>
     <section class="section_add_expense">
+      <div id="alert" style="display: none;"></div>
       <form id="add-expense-form" method="POST" action="/add_expense">
         <label for="date">Date</label>
         <input type="date" id="date" name="date" required />
@@ -41,8 +42,6 @@
 
         <button type="submit" class="btn">Add Expense</button>
       </form>
-      <div id="alert" style="display: none;"></div>
-
     </section>
   </main>
   <footer>
