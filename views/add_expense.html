@@ -21,17 +21,28 @@
       <a href="/login">Login</a>
     </nav>
   </header>
+
+  <!-- Message Container -->
+  <div id="message-container"></div>
+
   <main>
     <section class="section_add_expense">
-      <form id="add-expense-form" method="POST" action="/add-expense">
+      <form id="add-expense-form" method="POST" action="/add_expense">
         <label for="date">Date</label>
         <input type="date" id="date" name="date" required />
+
         <label for="amount">Amount</label>
         <input type="number" id="amount" name="amount" required />
+
         <label for="description">Description</label>
-        <input type="text" id="description" name="description" required />
+        <input type="text" id="description" name="description" required maxlength="100" pattern="^[a-zA-Z0-9\s]+$"
+          title="Description can only contain letters, numbers, and spaces." />
+        <span id="description-error" class="error-message"></span>
+
         <button type="submit" class="btn">Add Expense</button>
       </form>
+      <div id="alert" style="display: none;"></div>
+
     </section>
   </main>
   <footer>

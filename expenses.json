@@ -5,5 +5,26 @@
     "date": "2024-10-04",
     "amount": "1500",
     "description": "Transport"
+  },
+  {
+    "id": 2,
+    "userId": 3,
+    "date": "2024-09-22",
+    "amount": "20",
+    "description": "Fan"
+  },
+  {
+    "id": 3,
+    "userId": 3,
+    "date": "2024-09-28",
+    "amount": "23",
+    "description": "yam"
+  },
+  {
+    "id": 4,
+    "userId": 2,
+    "date": "2024-09-28",
+    "amount": "23",
+    "description": "food"
   }
 ]

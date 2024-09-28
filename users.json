@@ -4,5 +4,16 @@
     "name": "Ezekiel",
     "email": "ezekielsiniishaya@gmail.com",
     "password": "$2b$10$/ghs/w65.FyLruTb0Qf..OiPAdtnljCtKHkziKl1jhBsFZ2U.ho9q"
+  },
+  {
+    "id": 2,
+    "name": "Ishaya",
+    "email": "ezekiel.m2200166@st.futminna.edu.ng",
+    "password": "$2a$10$2ArWiZIXSwH.Kc8FK7f/KuJU7/sNsXIAipEdShIICfgjpni1RXzke"
+  },
+  {
+    "id": 3,
+    "email": "ezekiel.m220166@st.futminna.edu.ng",
+    "password": "$2a$10$0lOBWdRY.2/rEZCy24OIpeC09C0zC4U/z7kd4PX69lNkzt3rjS5Vm"
   }
 ]
