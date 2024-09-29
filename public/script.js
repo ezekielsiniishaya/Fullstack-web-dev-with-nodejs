@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const updatedDescription = document.getElementById("description").value;
       const updatedAmount = document.getElementById("amount").value;
       const updatedDate = document.getElementById("date").value;
-      fetch(`/edit_expense/${id}`, {
+      fetch(`/edit-expense/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

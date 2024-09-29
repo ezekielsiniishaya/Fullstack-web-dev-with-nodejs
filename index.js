@@ -35,41 +35,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// In-memory storage (or you can store it in a JSON file for persistence)
+// In-memory storage (can use JSON files for persistence)
 let users = [];
 let expenses = [];
-// Example updateExpense function
-const updateExpense = (id, updatedData) => {
-  // Logic to update the expense in your database or data source
-  const expense = getExpenseById(id); // Assuming you have a function to get an expense by ID
 
-  if (!expense) {
-    throw new Error("Expense not found");
-  }
-
-  // Update fields
-  expense.amount = updatedData.amount || expense.amount;
-  expense.date = updatedData.date || expense.date;
-  expense.description = updatedData.description || expense.description;
-
-  // Save updated expense logic (this depends on how you're handling data)
-  return expense; // Return the updated expense or a success message
-};
-//function to validate date
-function validateDate(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-
-  // Check if the date is valid and not too far in the future
-  return (
-    date.toString() !== "Invalid Date" &&
-    date <= new Date(now.getFullYear() + 100, 11, 31)
-  );
-}
-const getExpenseById = (expenseId) => {
-  // Convert expenseId to number to match the data type
-  return expenses.find((expense) => expense.id === parseInt(expenseId));
-};
 // Helper functions to read/write data to a JSON file
 const writeDataToFile = (filename, content) => {
   fs.writeFileSync(filename, JSON.stringify(content, null, 2), "utf8");
@@ -84,12 +53,28 @@ const readDataFromFile = (filename) => {
   }
 };
 
-// Load data from files (if needed for persistence)
+// Load data from files (for persistence)
 if (fs.existsSync("users.json")) {
   users = readDataFromFile("users.json");
 }
 if (fs.existsSync("expenses.json")) {
   expenses = readDataFromFile("expenses.json");
+}
+
+// Helper function to get an expense by ID
+const getExpenseById = (expenseId) => {
+  return expenses.find((expense) => expense.id === parseInt(expenseId));
+};
+
+// Helper function to validate date
+function validateDate(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+
+  return (
+    date.toString() !== "Invalid Date" &&
+    date <= new Date(now.getFullYear() + 100, 11, 31)
+  );
 }
 
 // Routes
@@ -112,6 +97,7 @@ app.post("/register", (req, res) => {
   if (users.find((user) => user.email === email)) {
     return res.status(400).json({ message: "User already exists" });
   }
+
   // Hash the password and store the user
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {
@@ -131,42 +117,13 @@ app.post("/register", (req, res) => {
     writeDataToFile("users.json", users);
 
     // Redirect to the login page after successful registration
-    res
-      .status(200)
-      .json({ message: "Registration successful. Redirecting to login..." });
+    res.status(200).json({ message: "Registration successful." });
   });
 });
 
 // Serve the login page
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "login.html"));
-});
-// Serve the edit expense HTML page
-app.get("/edit_expense/:id", (req, res) => {
-  const expenseId = req.params.id; // Capture the expense ID from the URL
-  res.sendFile(path.join(__dirname, "views", "edit_expense.html"));
-});
-
-// API route to fetch the expense data
-app.get("/api/edit_expense/:id", async (req, res) => {
-  const expenseId = req.params.id;
-  try {
-    // Replace with your own function to get an expense by ID
-    const expense = await getExpenseById(expenseId);
-
-    if (!expense) {
-      // If no expense is found, return a 404 error with JSON
-      return res
-        .status(404)
-        .json({ success: false, message: "Expense not found" });
-    }
-
-    res.json({ success: true, expense }); // Send the expense data as JSON
-  } catch (error) {
-    console.error("Error fetching expense:", error);
-    // Return a JSON object on error
-    res.status(500).json({ success: false, message: "Error fetching expense" });
-  }
 });
 
 // User Login Route
@@ -189,18 +146,16 @@ app.post("/login", (req, res) => {
     req.session.userName = user.name;
 
     // Redirect to the expenses page
-    res
-      .status(200)
-      .json({ message: "Login successful. Redirecting to expenses page..." });
+    res.status(200).json({ message: "Login successful." });
   });
 });
 
-// Serve the expense pages
+// Serve the expense-related pages
 app.get("/add_expense", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "add_expense.html"));
 });
 
-app.get("/edit_expense", (req, res) => {
+app.get("/edit_expense/:id", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "edit_expense.html"));
 });
 
@@ -217,7 +172,7 @@ app.post("/add-expense", (req, res) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  // Validate input on the backend as well
+  // Validate input
   if (!date || !amount || !description) {
     return res.status(400).json({ message: "All fields are required." });
   }
@@ -261,12 +216,12 @@ app.get("/expenses", (req, res) => {
   );
   res.status(200).json(userExpenses);
 });
-// API route to fetch the expense data
+// API route to fetch the expense data and display on edit expense page
 app.get("/api/edit_expense/:id", async (req, res) => {
   const expenseId = req.params.id;
   try {
     // Replace with your own function to get an expense by ID
-    const expense = await getExpenseById(expenseId); // This function should be implemented
+    const expense = await getExpenseById(expenseId);
 
     if (!expense) {
       // If no expense is found, return a 404 error with JSON
@@ -282,12 +237,11 @@ app.get("/api/edit_expense/:id", async (req, res) => {
     res.status(500).json({ success: false, message: "Error fetching expense" });
   }
 });
-app.get("/api/expenses/:id", async (req, res) => {
+
+// API route to fetch the expense data
+app.get("/api/expenses/:id", (req, res) => {
   const expenseId = req.params.id;
-  const isValidDate = validateDate(date);
-  if (!isValidDate) {
-    return res.status(400).json({ message: "Invalid date provided." });
-  }
+
   if (!req.session.userId) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -303,41 +257,8 @@ app.get("/api/expenses/:id", async (req, res) => {
   res.status(200).json(expense);
 });
 
-app.put("/edit_expense/:id", async (req, res) => {
-  const expenseId = req.params.id;
-  const { amount, description, date } = req.body;
-  try {
-    // Replace with your own function to update the expense
-    const result = await updateExpense(expenseId, {
-      amount,
-      description,
-      date,
-    });
-
-    if (!result) {
-      // Handle case where the update fails, maybe because the expense doesn't exist
-      return res.status(404).json({
-        success: false,
-        message: "Expense not found or update failed",
-      });
-    }
-    // Persist expenses data
-    writeDataToFile("expenses.json", expenses);
-    res.json({ success: true, result }); // Send a success message with the updated expense
-  } catch (error) {
-    console.error("Error updating expense:", error);
-    // Return a JSON object on error
-    res.status(500).json({ success: false, message: "Error updating expense" });
-  }
-});
-
-// Load existing expenses from the JSON file
-function loadExpenses() {
-  return JSON.parse(fs.readFileSync("expenses.json", "utf8"));
-}
-
+// Edit Expense Route
 app.put("/edit-expense/:id", (req, res) => {
-  // Ensure expenseId is a number for comparison
   const expenseId = parseInt(req.params.id, 10);
   const { date, amount, description } = req.body;
 
@@ -348,9 +269,6 @@ app.put("/edit-expense/:id", (req, res) => {
   if (!date || !amount || !description) {
     return res.status(400).json({ message: "All fields are required." });
   }
-
-  // Load expenses before searching
-  const expenses = loadExpenses();
 
   const expense = expenses.find(
     (exp) => exp.id === expenseId && exp.userId === req.session.userId
@@ -401,33 +319,37 @@ app.get("/api/expense", (req, res) => {
   const userExpenses = expenses.filter(
     (exp) => exp.userId === req.session.userId
   );
-  const total = userExpenses.reduce(
-    (sum, exp) => sum + parseFloat(exp.amount),
+  const totalExpense = userExpenses.reduce(
+    (acc, expense) => acc + parseFloat(expense.amount),
     0
   );
 
-  res.status(200).json({ total });
+  res.status(200).json({ totalExpense });
 });
-function updateExpenseInJson(expenseId, updatedExpense) {
-  const expenseIndex = expenses.findIndex(
-    (expense) => expense.id === expenseId
-  );
-  if (expenseIndex !== -1) {
-    // Update the expense
-    expenses[expenseIndex] = { ...expenses[expenseIndex], ...updatedExpense };
-  } else {
-    throw new Error("Expense not found");
-  }
-}
-function saveExpensesToJson() {
-  fs.writeFileSync(
-    "path/to/your/expenses.json",
-    JSON.stringify(expenses, null, 2),
-    "utf8"
-  );
-}
 
-// Start server
+// User Logout Route
+app.get("/logout", (req, res) => {
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Error logging out" });
+    }
+
+    // Check if the request expects JSON (based on the Accept header)
+    const acceptsJSON =
+      req.headers.accept || req.headers.accept.includes("application/json");
+
+    if (acceptsJSON) {
+      // Send JSON response for API requests
+      return res.status(200).json({ message: "Logout successful" });
+    } else {
+      // Redirect to the login page for regular browser requests
+      return res.redirect("/login");
+    }
+  });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

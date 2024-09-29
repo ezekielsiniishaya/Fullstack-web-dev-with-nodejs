@@ -61,5 +61,12 @@
     "date": "2024-09-29",
     "amount": "250",
     "description": "Groundnut "
+  },
+  {
+    "id": 10,
+    "userId": 1,
+    "date": "2024-09-22",
+    "amount": "200",
+    "description": "Egg"
   }
 ]

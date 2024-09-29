@@ -15,5 +15,10 @@
     "id": 3,
     "email": "ezekiel.m220166@st.futminna.edu.ng",
     "password": "$2a$10$0lOBWdRY.2/rEZCy24OIpeC09C0zC4U/z7kd4PX69lNkzt3rjS5Vm"
+  },
+  {
+    "id": 4,
+    "email": "adigun.samson2004@gmail.com",
+    "password": "$2a$10$lPXC0ApeMt9VP1u921KjvOs6LmJJbjYtE.WscsHiErOKPXSzii/rG"
   }
 ]
