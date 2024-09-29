@@ -181,27 +181,27 @@ a:hover {
 /* Responsive Styles */
 @media (max-width: 800px) {
   section {
-    width: 100%;
+    width: 90%;
   }
 
-  table,
-  th,
-  td {
-    font-size: 10px;
+  
+  table {
+    font-size: 13px;
   }
 
   nav a {
-    font-size: 10px;
+    font-size: 12px;
   }
   table button {
-    width: 40px;
-    font-size: 10px;
+    width: 50px;
+    font-size: 12px;
     padding: 4px 8px;
+    margin-top:0px;
   }
 
   nav a {
     display: block;
-    margin: 10px 0;
+    margin: 12px 0;
     font-size: 14px;
   }
 
@@ -211,9 +211,9 @@ a:hover {
   .section_add_expense,
   .section_edit,
   .section_home {
-    width: 100%;
+    width: 98%;
     padding: 15px 0 15px 0;
-    margin: 0;
+    margin-top: 100px;
   }
 
   h1,
@@ -221,23 +221,22 @@ a:hover {
   h3 {
     font-size: 23px;
   }
+  button {
+      margin-top:10px;
+      font-size: 13px;
+    }
 
-  form input,
-  button,
-  .btn {
-    font-size: 10px;
-  }
 
   .section_expenses .btn {
     width: 30px;
     height: auto;
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 5px;
     text-align: center;
     padding: 5px;
   }
   footer {
-    font-size: 0.7em;
+    font-size: 0.8em;
     width: 100%;
     margin: auto;
     padding: 0;
